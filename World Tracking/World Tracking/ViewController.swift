@@ -35,19 +35,34 @@ class ViewController: UIViewController {
     @IBAction func addObject(_ sender: Any) {
         let node = SCNNode() // a node is a position in space (no size or shape)
 
+        // add geometry to scene
+//        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.1/2) // add a sphere using a box geometry
 //        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0) // add a box to the node (0.1m on all sides)
-//        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.1/2) // add a sphere
-       
-        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03) // add a box with rounded corners
+//        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03) // add a box with rounded corners
+//        node.geometry = SCNCapsule(capRadius: 0.1, height: 0.3) // add a capsule
+//        node.geometry = SCNCone(topRadius: 0.1, bottomRadius: 0.3, height: 0.3) // add a cone
+//        node.geometry = SCNCone(topRadius: 0.1, bottomRadius: 0.1, height: 0.1) // add a cylinder using cone geometry
+//        node.geometry = SCNCylinder(radius: 0.2, height: 0.2) // add a cylinder
+//        node.geometry = SCNSphere(radius: 0.1) // add a sphere
+//        node.geometry = SCNTube(innerRadius: 0.2, outerRadius: 0.3, height: 0.5) // add a tube
+//        node.geometry = SCNTorus(ringRadius: 0.3, pipeRadius: 0.1) // add a torus - make sure pipe is smaller than ring
+//        node.geometry = SCNPlane(width: 0.2, height: 0.2) // add a plane
+//        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1) // add a pyramid
+        
+        // add custom shape
+        let path = UIBezierPath() // init path
+        path.move(to: CGPoint(x: 0, y: 0)) // set path origin
+        path.addLine(to: CGPoint(x:0, y:0.2)) // add a line to the given point
+        path.addLine(to: CGPoint(x: 0.2, y: 0.3))
+        path.addLine(to: CGPoint(x: 0.4, y: 0.2))
+        path.addLine(to: CGPoint(x: 0.4, y: 0))
+        let shape = SCNShape(path: path, extrusionDepth: 0.2)
+        node.geometry = shape
+        
         node.geometry?.firstMaterial?.specular.contents = UIColor.orange // specular describes color of light that reflects from surface
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue // set the box to blue
         
-        // randomly generate locations
-        let x = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-        let y = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-        let z = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-        
-        node.position = SCNVector3(x,y,z) // set the position at random location
+        node.position = SCNVector3(0,0,-0.7) // set the position at random location
         self.sceneView.scene.rootNode.addChildNode(node) // add the newly created node to the scene
     }
     
