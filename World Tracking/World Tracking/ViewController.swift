@@ -33,6 +33,10 @@ class ViewController: UIViewController {
 
     // action for Add button within UIview
     @IBAction func addObject(_ sender: Any) {
+        
+        let cylinderNode = SCNNode(geometry: SCNCylinder(radius: 0.05, height: 0.05))
+        cylinderNode.geometry?.firstMaterial?.diffuse = UIColor.red
+        
         let node = SCNNode() // a node is a position in space (no size or shape)
 
         // add geometry to scene
@@ -50,19 +54,24 @@ class ViewController: UIViewController {
 //        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1) // add a pyramid
         
         // add custom shape
-        let path = UIBezierPath() // init path
-        path.move(to: CGPoint(x: 0, y: 0)) // set path origin
-        path.addLine(to: CGPoint(x:0, y:0.2)) // add a line to the given point
-        path.addLine(to: CGPoint(x: 0.2, y: 0.3))
-        path.addLine(to: CGPoint(x: 0.4, y: 0.2))
-        path.addLine(to: CGPoint(x: 0.4, y: 0))
-        let shape = SCNShape(path: path, extrusionDepth: 0.2) // create shape from path, give extrusion depth
-        node.geometry = shape // add shape to node
+//        let path = UIBezierPath() // init path
+//        path.move(to: CGPoint(x: 0, y: 0)) // set path origin
+//        path.addLine(to: CGPoint(x:0, y:0.2)) // add a line to the given point
+//        path.addLine(to: CGPoint(x: 0.2, y: 0.3))
+//        path.addLine(to: CGPoint(x: 0.4, y: 0.2))
+//        path.addLine(to: CGPoint(x: 0.4, y: 0))
+//        let shape = SCNShape(path: path, extrusionDepth: 0.2) // create shape from path, give extrusion depth
+//        node.geometry = shape // add shape to node
+        
+        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1) // add a pyramid
         
         node.geometry?.firstMaterial?.specular.contents = UIColor.orange // specular describes color of light that reflects from surface
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue // set the box to blue
         
         node.position = SCNVector3(0,0,-0.7) // set the position at random location
+        cylinderNode.position = SCNVector3(-0.3, 0.2, -0.3)
+        node.addChildNode(cylinderNode) // add cylinder as a child of pyramid
+        
         self.sceneView.scene.rootNode.addChildNode(node) // add the newly created node to the scene
     }
     
