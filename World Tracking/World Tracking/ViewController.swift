@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         doorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.brown
         
         let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
-        boxNode.geometry?.firstMaterial?.diffuse = UIColor.blue
+        boxNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
         
         let node = SCNNode() // a node is a position in space (no size or shape)
 
