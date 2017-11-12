@@ -33,9 +33,11 @@ class ViewController: UIViewController {
 
     // action for Add button within UIview
     @IBAction func addObject(_ sender: Any) {
+        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
+        doorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.brown
         
-        let cylinderNode = SCNNode(geometry: SCNCylinder(radius: 0.05, height: 0.05))
-        cylinderNode.geometry?.firstMaterial?.diffuse = UIColor.red
+        let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+        boxNode.geometry?.firstMaterial?.diffuse = UIColor.blue
         
         let node = SCNNode() // a node is a position in space (no size or shape)
 
@@ -66,11 +68,15 @@ class ViewController: UIViewController {
         node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1) // add a pyramid
         
         node.geometry?.firstMaterial?.specular.contents = UIColor.orange // specular describes color of light that reflects from surface
-        node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue // set the box to blue
+        node.geometry?.firstMaterial?.diffuse.contents = UIColor.red // set the box to blue
         
-        node.position = SCNVector3(0,0,-0.7) // set the position at random location
-        cylinderNode.position = SCNVector3(-0.3, 0.2, -0.3)
-        node.addChildNode(cylinderNode) // add cylinder as a child of pyramid
+        node.position = SCNVector3(0,0,-0.7) // set the position at location
+        boxNode.position = SCNVector3(0, -0.05, 0) // set position relative to pyramid
+        doorNode.position = SCNVector3(0,-0.02,0.053)
+        
+        boxNode.addChildNode(doorNode) // add door as child to box
+        node.addChildNode(boxNode) // add box as a child of pyramid
+        
         
         self.sceneView.scene.rootNode.addChildNode(node) // add the newly created node to the scene
     }
