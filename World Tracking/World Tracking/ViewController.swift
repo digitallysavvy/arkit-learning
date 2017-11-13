@@ -45,20 +45,24 @@ class ViewController: UIViewController {
 //        self.sceneView.scene.rootNode.addChildNode(pyramid)
 
         // pitch example
-        let plane = SCNNode(geometry: SCNPlane(width: 0.3, height: 0.3))
-        plane.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        plane.position = SCNVector3(0,0,-0.3)
-        plane.eulerAngles = SCNVector3(0,Float(90.degreesToRadiens),0)
-        plane.geometry?.firstMaterial?.isDoubleSided = true // set both sides of the plane visible
-        self.sceneView.scene.rootNode.addChildNode(plane)
+//        let plane = SCNNode(geometry: SCNPlane(width: 0.3, height: 0.3))
+//        plane.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+//        plane.position = SCNVector3(0,0,-0.3)
+//        plane.eulerAngles = SCNVector3(0,Float(90.degreesToRadiens),0)
+//        plane.geometry?.firstMaterial?.isDoubleSided = true // set both sides of the plane visible
+//        self.sceneView.scene.rootNode.addChildNode(plane)
         
         // yaw example
-//        let cylinder = SCNNode(geometry: SCNCylinder(radius: 0.1, height: 0.3))
-//        cylinder.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-//        cylinder.position = SCNVector3(0,0,-0.3)
-//        cylinder.eulerAngles = SCNVector3(0,0,Float(90.degreesToRadiens))
-//        self.sceneView.scene.rootNode.addChildNode(cylinder)
+        let cylinder = SCNNode(geometry: SCNCylinder(radius: 0.1, height: 0.1))
+        cylinder.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        cylinder.position = SCNVector3(0,0,-0.3)
+        cylinder.eulerAngles = SCNVector3(0,0,Float(90.degreesToRadiens))
+        self.sceneView.scene.rootNode.addChildNode(cylinder)
         
+        let pyramid = SCNNode(geometry: SCNPyramid(width: 0.1, height: 0.1, length: 0.1))
+        pyramid.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        pyramid.position = SCNVector3(0,0,-0.5)
+        plane.addChildNode(pyramid)
         
         // simple house from native geometeries
 //        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
