@@ -33,52 +33,54 @@ class ViewController: UIViewController {
 
     // action for Add button within UIview
     @IBAction func addObject(_ sender: Any) {
-        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
-        doorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.brown
-        
-        let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
-        boxNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        
-        let node = SCNNode() // a node is a position in space (no size or shape)
+        // pitch - rotate around y-axis
+        // yaw - rotate around z-axis
+        // roll - rotate around x-axis
 
-        // add geometry to scene
-//        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.1/2) // add a sphere using a box geometry
-//        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0) // add a box to the node (0.1m on all sides)
-//        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03) // add a box with rounded corners
-//        node.geometry = SCNCapsule(capRadius: 0.1, height: 0.3) // add a capsule
-//        node.geometry = SCNCone(topRadius: 0.1, bottomRadius: 0.3, height: 0.3) // add a cone
-//        node.geometry = SCNCone(topRadius: 0.1, bottomRadius: 0.1, height: 0.1) // add a cylinder using cone geometry
-//        node.geometry = SCNCylinder(radius: 0.2, height: 0.2) // add a cylinder
-//        node.geometry = SCNSphere(radius: 0.1) // add a sphere
-//        node.geometry = SCNTube(innerRadius: 0.2, outerRadius: 0.3, height: 0.5) // add a tube
-//        node.geometry = SCNTorus(ringRadius: 0.3, pipeRadius: 0.1) // add a torus - make sure pipe is smaller than ring
-//        node.geometry = SCNPlane(width: 0.2, height: 0.2) // add a plane
+        // roll example
+//        let pyramid = SCNNode(geometry: SCNPyramid(width: 0.1, height: 0.1, length: 0.1))
+//        pyramid.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+//        pyramid.position = SCNVector3(0,0,-0.3)
+//        pyramid.eulerAngles = SCNVector3(Float(180.degreesToRadiens),0,0) // roll
+//        self.sceneView.scene.rootNode.addChildNode(pyramid)
+
+        // pitch example
+        let plane = SCNNode(geometry: SCNPlane(width: 0.3, height: 0.3))
+        plane.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        plane.position = SCNVector3(0,0,-0.3)
+        plane.eulerAngles = SCNVector3(0,Float(90.degreesToRadiens),0)
+        plane.geometry?.firstMaterial?.isDoubleSided = true // set both sides of the plane visible
+        self.sceneView.scene.rootNode.addChildNode(plane)
+        
+        // yaw example
+//        let cylinder = SCNNode(geometry: SCNCylinder(radius: 0.1, height: 0.3))
+//        cylinder.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+//        cylinder.position = SCNVector3(0,0,-0.3)
+//        cylinder.eulerAngles = SCNVector3(0,0,Float(90.degreesToRadiens))
+//        self.sceneView.scene.rootNode.addChildNode(cylinder)
+        
+        
+        // simple house from native geometeries
+//        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
+//        doorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.brown
+//
+//        let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+//        boxNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+//
+//        let node = SCNNode() // a node is a position in space (no size or shape)
+//
 //        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1) // add a pyramid
+//
+//        node.geometry?.firstMaterial?.specular.contents = UIColor.orange // specular describes color of light that reflects from surface
+//        node.geometry?.firstMaterial?.diffuse.contents = UIColor.red // set the box to blue
+//
+//        node.position = SCNVector3(0,0,-0.7) // set the position at location
+//        boxNode.position = SCNVector3(0, -0.05, 0) // set position relative to pyramid
+//        doorNode.position = SCNVector3(0,-0.02,0.053)
         
-        // add custom shape
-//        let path = UIBezierPath() // init path
-//        path.move(to: CGPoint(x: 0, y: 0)) // set path origin
-//        path.addLine(to: CGPoint(x:0, y:0.2)) // add a line to the given point
-//        path.addLine(to: CGPoint(x: 0.2, y: 0.3))
-//        path.addLine(to: CGPoint(x: 0.4, y: 0.2))
-//        path.addLine(to: CGPoint(x: 0.4, y: 0))
-//        let shape = SCNShape(path: path, extrusionDepth: 0.2) // create shape from path, give extrusion depth
-//        node.geometry = shape // add shape to node
-        
-        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1) // add a pyramid
-        
-        node.geometry?.firstMaterial?.specular.contents = UIColor.orange // specular describes color of light that reflects from surface
-        node.geometry?.firstMaterial?.diffuse.contents = UIColor.red // set the box to blue
-        
-        node.position = SCNVector3(0,0,-0.7) // set the position at location
-        boxNode.position = SCNVector3(0, -0.05, 0) // set position relative to pyramid
-        doorNode.position = SCNVector3(0,-0.02,0.053)
-        
-        boxNode.addChildNode(doorNode) // add door as child to box
-        node.addChildNode(boxNode) // add box as a child of pyramid
-        
-        
-        self.sceneView.scene.rootNode.addChildNode(node) // add the newly created node to the scene
+//        boxNode.addChildNode(doorNode) // add door as child to box
+//        node.addChildNode(boxNode) // add box as a child of pyramid
+//        self.sceneView.scene.rootNode.addChildNode(node) // add the newly created node to the scene
     }
     
     // action for the Reset button within the UIview
@@ -98,7 +100,9 @@ class ViewController: UIViewController {
     func randomNumbers(firstNum: CGFloat, secondNum: CGFloat) -> CGFloat {
         return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum,secondNum)
     }
-    
-    
+}
+
+extension Int {
+    var degreesToRadiens: Double { return Double(self) * .pi/180}
 }
 
