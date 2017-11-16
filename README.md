@@ -4,5 +4,5 @@ A collection of ARKit builds from the Udemy Course: ["The Complete ARKit Course"
 
 ## Projects
 
-1. World Tracking : add AR Scene View to storyboard, initialize world tracking session with debug options (feature point and world origin tracking)
-2. 
+1. World Tracking : add AR Scene View to storyboard, initialize world tracking session with debug options (feature point and world origin tracking). add primitive shapes, apply translations and rotations (parent-child)
+2. AR Drawing : 
