@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         let pyramid = SCNNode(geometry: SCNPyramid(width: 0.1, height: 0.1, length: 0.1))
         pyramid.geometry?.firstMaterial?.diffuse.contents = UIColor.red
         pyramid.position = SCNVector3(0,0,-0.5)
-        plane.addChildNode(pyramid)
+        cylinder.addChildNode(pyramid)
         
         // simple house from native geometeries
 //        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
