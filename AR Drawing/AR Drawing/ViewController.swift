@@ -33,7 +33,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // get camera translation and rotation
         guard let pointOfView = sceneView.pointOfView else { return }
         let transform = pointOfView.transform // transformation matrix
-        let orientation = SCNVector3(transform.m31, transform.m32, transform.m33) // camera rotation
+        let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33) // camera rotation
         let location = SCNVector3(transform.m41, transform.m42, transform.m43) // camera translation
         
         let currentPostion = orientation + location
