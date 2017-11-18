@@ -13,6 +13,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet weak var sceneView: ARSCNView!
     let configuration = ARWorldTrackingConfiguration()
+    @IBOutlet weak var drawBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +30,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        print("rendering")
         // get camera translation and rotation
         guard let pointOfView = sceneView.pointOfView else { return }
         let transform = pointOfView.transform // transformation matrix
         let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33) // camera rotation
         let location = SCNVector3(transform.m41, transform.m42, transform.m43) // camera translation
         
-        let currentPostion = orientation + location
-        print(orientation.x, orientation.y, orientation.z)
+        let currentPostionOfCamera = orientation + location
+        DispatchQueue.main.async {
+            if self.drawBtn.isHighlighted {
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.02))
+                sphereNode.position = currentPostionOfCamera
+                self.sceneView.scene.rootNode.addChildNode(sphereNode)
+                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+            } else {
+                let brushPointer : SCNNode = SCNNode(geometry: SCNSphere(radius: 0.01))
+                brushPointer.position = currentPostionOfCamera // give the user a visual cue of brush position
+                brushPointer.name = "brushPointer" // set name to differentiate
+                self.sceneView.scene.rootNode.enumerateChildNodes({ (node, _) in
+                    if node.name == "brushPointer" {
+                        node.removeFromParentNode() // only remove bursh pointer
+                    }
+                })
+                
+                self.sceneView.scene.rootNode.addChildNode(brushPointer)
+                brushPointer.geometry?.firstMaterial?.diffuse.contents = UIColor.lightGray
+            }
+        }
     }
 
 
