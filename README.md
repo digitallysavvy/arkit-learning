@@ -1,5 +1,5 @@
 # arkit-learning
-A collection of ARKit builds from the Udemy Course: ["The Complete ARKit Course"](https://www.udemy.com/ios-augmented-reality-the-complete-course-on-arkit/learn/v4/overview)
+A collection of ARKit builds from the Udemy Course: ["The Complete ARKit Course"](https://www.udemy.com/ios-augmented-reality-the-complete-course-on-arkit/learn/v4/overview) with some customizations/add-ons to keep things interesting.
 
 
 ## Projects
