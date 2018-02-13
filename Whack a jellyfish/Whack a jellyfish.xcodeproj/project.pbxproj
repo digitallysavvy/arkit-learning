@@ -12,6 +12,8 @@
 		A107AF77203388A0008EF2EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A107AF75203388A0008EF2EC /* Main.storyboard */; };
 		A107AF79203388A0008EF2EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A107AF78203388A0008EF2EC /* Assets.xcassets */; };
 		A107AF7C203388A0008EF2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A107AF7A203388A0008EF2EC /* LaunchScreen.storyboard */; };
+		A107AF8620339021008EF2EC /* Textures in Resources */ = {isa = PBXBuildFile; fileRef = A107AF8520339021008EF2EC /* Textures */; };
+		A107AF8920339086008EF2EC /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A107AF8820339086008EF2EC /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		A107AF78203388A0008EF2EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A107AF7B203388A0008EF2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A107AF7D203388A0008EF2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A107AF8520339021008EF2EC /* Textures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Textures; sourceTree = "<group>"; };
+		A107AF8820339086008EF2EC /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +62,10 @@
 				A107AF73203388A0008EF2EC /* ViewController.swift */,
 				A107AF75203388A0008EF2EC /* Main.storyboard */,
 				A107AF78203388A0008EF2EC /* Assets.xcassets */,
+				A107AF8520339021008EF2EC /* Textures */,
 				A107AF7A203388A0008EF2EC /* LaunchScreen.storyboard */,
 				A107AF7D203388A0008EF2EC /* Info.plist */,
+				A107AF8820339086008EF2EC /* art.scnassets */,
 			);
 			path = "Whack a jellyfish";
 			sourceTree = "<group>";
@@ -125,6 +131,8 @@
 			files = (
 				A107AF7C203388A0008EF2EC /* LaunchScreen.storyboard in Resources */,
 				A107AF79203388A0008EF2EC /* Assets.xcassets in Resources */,
+				A107AF8920339086008EF2EC /* art.scnassets in Resources */,
+				A107AF8620339021008EF2EC /* Textures in Resources */,
 				A107AF77203388A0008EF2EC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
