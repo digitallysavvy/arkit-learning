@@ -4,11 +4,15 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -19,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUI-h1-enJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="617"/>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HtU-bl-8uk">
                                 <rect key="frame" x="20" y="547" width="100" height="100"/>
@@ -43,22 +47,44 @@
                                     <action selector="resetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hiG-9y-l8Z"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xe1-kR-nXS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lets Play" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLD-J0-meu">
+                                        <rect key="frame" x="144" y="10" width="86.5" height="30.5"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="nLD-J0-meu" firstAttribute="centerY" secondItem="Xe1-kR-nXS" secondAttribute="centerY" id="007-wA-jck"/>
+                                    <constraint firstItem="nLD-J0-meu" firstAttribute="centerX" secondItem="Xe1-kR-nXS" secondAttribute="centerX" id="5Km-bH-1i9"/>
+                                    <constraint firstAttribute="height" constant="50" id="fSt-mz-nog"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="hUI-h1-enJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="2yS-4c-djf"/>
                             <constraint firstItem="hUI-h1-enJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5Fn-nl-KP4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MUh-84-M2W" secondAttribute="bottom" constant="20" id="7fy-vE-sia"/>
-                            <constraint firstItem="hUI-h1-enJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Brj-IM-Dun"/>
+                            <constraint firstItem="Xe1-kR-nXS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Jfg-Fb-VWP"/>
+                            <constraint firstItem="Xe1-kR-nXS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RDr-S0-Zkf"/>
                             <constraint firstItem="hUI-h1-enJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="REV-Wp-YXm"/>
                             <constraint firstItem="HtU-bl-8uk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Zhk-Uh-l7B"/>
+                            <constraint firstItem="hUI-h1-enJ" firstAttribute="top" secondItem="Xe1-kR-nXS" secondAttribute="bottom" id="bE9-aj-9NQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MUh-84-M2W" secondAttribute="trailing" constant="20" id="kgQ-Jv-yus"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HtU-bl-8uk" secondAttribute="bottom" constant="20" id="qrm-EQ-fvw"/>
+                            <constraint firstItem="Xe1-kR-nXS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="rQi-h0-Rp6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="SceneView" destination="hUI-h1-enJ" id="Bv7-gK-ZCd"/>
+                        <outlet property="playBtn" destination="HtU-bl-8uk" id="cJx-WP-LMn"/>
+                        <outlet property="timerLabel" destination="007-wA-jck" id="TGU-Vp-Cyz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

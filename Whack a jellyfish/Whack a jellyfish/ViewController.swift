@@ -8,12 +8,18 @@
 
 import UIKit
 import ARKit
+import Each
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var SceneView: ARSCNView!
     let configuration = ARWorldTrackingConfiguration()
     
+    @IBOutlet weak var playBtn: UIButton!
+    @IBOutlet weak var timerLabel: NSLayoutConstraint!
+    
+    var timer = Each(1).seconds
+    var countDown = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,20 +42,16 @@ class ViewController: UIViewController {
 
     @IBAction func playAction(_ sender: Any) {
         self.addNode()
+        self.playBtn.isEnabled = false
     }
     
     @IBAction func resetAction(_ sender: Any) {
     }
     
     func addNode() {
-//        let node = SCNNode(geometry: SCNBox(width: 0.2, height: 0.2, length: 0.2, chamferRadius: 0))
-//        node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-//        node.position = SCNVector3(0,0,-1)
-//        self.SceneView.scene.rootNode.addChildNode(node)
-        
         let jellyFishScene = SCNScene(named: "art.scnassets/Jellyfish.scn")
         let jellyFishNode = jellyFishScene?.rootNode.childNode(withName: "jellyFish", recursively: false)
-        jellyFishNode?.position = SCNVector3(0,0,-1)
+        jellyFishNode?.position = SCNVector3(randomNumbers(firstNum: -1, secondNum: 1), randomNumbers(firstNum: -0.5, secondNum: 0.5), randomNumbers(firstNum: -1, secondNum: 1))
         self.SceneView.scene.rootNode.addChildNode(jellyFishNode!)
     }
     
@@ -61,10 +63,33 @@ class ViewController: UIViewController {
             print("didn't touch anything")
         } else {
             let hitResults = hitTest.first!
-            let hitGeometry  = hitResults.node.geometry
-            print("tapped on a box: \(String(describing: hitGeometry))")
+            let hitNode = hitResults.node
+            if hitNode.animationKeys.isEmpty {
+                SCNTransaction.begin()
+                self.animateJellyFish(node: hitNode)
+                SCNTransaction.completionBlock = {
+                    hitNode.removeFromParentNode()
+                    self.addNode()
+                }
+                SCNTransaction.commit()
+            }
         }
     }
     
+    func animateJellyFish(node: SCNNode){
+        let vibrateAnim = CABasicAnimation(keyPath: "position")
+        vibrateAnim.fromValue = node.presentation.position
+        vibrateAnim.toValue = SCNVector3(node.presentation.position.x - 0.2, node.presentation.position.y - 0.2, node.presentation.position.z - 0.2)
+        vibrateAnim.duration = 0.07
+        vibrateAnim.autoreverses = true
+        vibrateAnim.repeatCount = 5
+        node.addAnimation(vibrateAnim, forKey: "position")
+    }
+    
 }
+
+func randomNumbers(firstNum: CGFloat, secondNum: CGFloat) -> CGFloat {
+    return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum,secondNum)
+}
+
 
